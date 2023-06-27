@@ -28,7 +28,6 @@ spec:
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-weatherforecast-steeltoe@sha256:13c92fc55d2d75511fa2037d0a2229f7a1fed18740ff30afc845a348cd92e4a8
       labels:
         apis.apps.tanzu.vmware.com/register-api: "true"
         app.kubernetes.io/component: run
@@ -41,7 +40,7 @@ spec:
         tanzu.app.live.view.application.name: weatherforecast-steeltoe
     spec:
       containers:
-      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/weatherforecast-steeltoe-dev@sha256:77304c689de399d6773e4a40fdc2446a4ead58abe9c745709e34e23699a880ca
+      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/weatherforecast-steeltoe-dev@sha256:32ba2ce9057fd8aa20b08b11b58dee0cdabcfbe91a4b9aded42438a98b3eb10a
         name: workload
         resources: {}
         securityContext:

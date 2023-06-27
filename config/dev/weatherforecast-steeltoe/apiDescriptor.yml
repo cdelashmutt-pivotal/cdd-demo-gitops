@@ -3,7 +3,6 @@ kind: APIDescriptor
 metadata:
   name: weatherforecast-steeltoe
   annotations:
-    local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-weatherforecast-steeltoe@sha256:13c92fc55d2d75511fa2037d0a2229f7a1fed18740ff30afc845a348cd92e4a8
     autoscaling.knative.dev/minScale: "1"
   labels:
     apis.apps.tanzu.vmware.com/register-api: "true"
