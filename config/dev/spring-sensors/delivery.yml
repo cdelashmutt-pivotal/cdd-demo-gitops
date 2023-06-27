@@ -35,7 +35,7 @@ spec:
           spring-boot-convention/app-live-view-appflavours-boot
         developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:e27bfaf30facea34312741f93feef412acf053bd9482e654a0ec5e23a8efcbcf
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:e27bfaf30facea34312741f93feef412acf053bd9482e654a0ec5e23a8efcbcf
+        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:60e432097bfc1cbc582cdafa23185f632eba08ba260e30ad50b96302e8df5e0c
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: spring-sensors
