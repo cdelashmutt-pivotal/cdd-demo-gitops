@@ -40,7 +40,7 @@ spec:
         tanzu.app.live.view.application.name: weatherforecast-steeltoe
     spec:
       containers:
-      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/weatherforecast-steeltoe-dev@sha256:77304c689de399d6773e4a40fdc2446a4ead58abe9c745709e34e23699a880ca
+      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/weatherforecast-steeltoe-dev@sha256:32ba2ce9057fd8aa20b08b11b58dee0cdabcfbe91a4b9aded42438a98b3eb10a
         name: workload
         resources: {}
         securityContext:
