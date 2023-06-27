@@ -33,7 +33,7 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
-        developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:e27bfaf30facea34312741f93feef412acf053bd9482e654a0ec5e23a8efcbcf
+        developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:60e432097bfc1cbc582cdafa23185f632eba08ba260e30ad50b96302e8df5e0c
         developer.conventions/target-containers: workload
         local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:60e432097bfc1cbc582cdafa23185f632eba08ba260e30ad50b96302e8df5e0c
       labels:
@@ -54,7 +54,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/spring-sensors-dev@sha256:c396bd21473ef0af7e948b28198b24a48d8cd302e1885819990ed1769656e704
+        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/spring-sensors-dev@sha256:0cc6632b3220f20b18b1fb04484e432284a60321767633696ebd86d407a673aa
         livenessProbe:
           httpGet:
             path: /livez
