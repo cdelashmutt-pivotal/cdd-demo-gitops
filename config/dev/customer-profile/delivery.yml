@@ -12,6 +12,8 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
+    kapp.k14s.io/app: "1687794778738191955"
+    kapp.k14s.io/association: v1.f6748480d2eb39ca2a433822c76d98cd
     app.kubernetes.io/component: run
     carto.run/workload-name: customer-profile
 spec:
@@ -34,7 +36,9 @@ spec:
           spring-boot-convention/app-live-view-appflavours-boot
           spring-boot-convention/service-intent-postgres
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-customer-profile@sha256:3062c4fa14894130be285984e7f73d42e3c468d5a0e133aa1837b0d17ca1102b
+        kapp.k14s.io/identity: v1;dev/carto.run/Workload/customer-profile;carto.run/v1alpha1
+        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"customer-profile","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1687794778738191955","kapp.k14s.io/association":"v1.f6748480d2eb39ca2a433822c76d98cd"},"name":"customer-profile","namespace":"dev"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"Manage customer profiles","location":{"path":"/api-docs"},"owner":"customer-relations-department","system":"profile-management","type":"openapi"}}],"serviceClaims":[{"name":"database","ref":{"apiVersion":"services.apps.tanzu.vmware.com/v1alpha1","kind":"ClassClaim","name":"customer-database"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/cdelashmutt-pivotal/java-rest-service"}}}}'
+        kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
         services.conventions.carto.run/postgres: postgresql/42.6.0
       labels:
         apis.apps.tanzu.vmware.com/register-api: "true"
@@ -45,6 +49,8 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: customer-profile
         conventions.carto.run/framework: spring-boot
+        kapp.k14s.io/app: "1687794778738191955"
+        kapp.k14s.io/association: v1.f6748480d2eb39ca2a433822c76d98cd
         services.conventions.carto.run/postgres: workload
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.actuator.path: actuator
@@ -56,7 +62,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/customer-profile-dev@sha256:e6a3a64f3e66fabc485df35445292ff5ea8ea56c9384bbf3f8271e1dc5d371e3
+        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/customer-profile-dev@sha256:78720b7a23af99e5bf3f12677756b73f74299609b8b40abf787ea285737dc57c
         livenessProbe:
           httpGet:
             path: /livez
