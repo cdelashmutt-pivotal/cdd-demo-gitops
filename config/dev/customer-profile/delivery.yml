@@ -1,29 +1,28 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: spring-sensors
+  name: customer-profile
   annotations:
     ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
     kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
   labels:
-    app.kubernetes.io/part-of: spring-sensors
+    apis.apps.tanzu.vmware.com/register-api: "true"
+    app.kubernetes.io/part-of: customer-profile
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/component: run
-    carto.run/workload-name: spring-sensors
+    carto.run/workload-name: customer-profile
 spec:
   template:
     metadata:
       annotations:
-        apps.tanzu.vmware.com/live-update: "true"
-        autoscaling.knative.dev/maxScale: "1"
         autoscaling.knative.dev/minScale: "1"
-        boot.spring.io/version: 3.0.2
+        boot.spring.io/actuator: http://:8081/actuator
+        boot.spring.io/version: 3.1.0
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          developer-conventions/live-update-convention
-          developer-conventions/add-source-image-label
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -33,28 +32,31 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
-        developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:e27bfaf30facea34312741f93feef412acf053bd9482e654a0ec5e23a8efcbcf
+          spring-boot-convention/service-intent-postgres
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-spring-sensors@sha256:60e432097bfc1cbc582cdafa23185f632eba08ba260e30ad50b96302e8df5e0c
+        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:dev-customer-profile@sha256:3062c4fa14894130be285984e7f73d42e3c468d5a0e133aa1837b0d17ca1102b
+        services.conventions.carto.run/postgres: postgresql/42.6.0
       labels:
+        apis.apps.tanzu.vmware.com/register-api: "true"
         app.kubernetes.io/component: run
-        app.kubernetes.io/part-of: spring-sensors
-        apps.tanzu.vmware.com/auto-configure-actuators: "false"
+        app.kubernetes.io/part-of: customer-profile
+        apps.tanzu.vmware.com/auto-configure-actuators: "true"
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
-        carto.run/workload-name: spring-sensors
+        carto.run/workload-name: customer-profile
         conventions.carto.run/framework: spring-boot
+        services.conventions.carto.run/postgres: workload
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.actuator.path: actuator
-        tanzu.app.live.view.application.actuator.port: "8080"
+        tanzu.app.live.view.application.actuator.port: "8081"
         tanzu.app.live.view.application.flavours: spring-boot
-        tanzu.app.live.view.application.name: spring-sensors
+        tanzu.app.live.view.application.name: customer-profile
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/spring-sensors-dev@sha256:c396bd21473ef0af7e948b28198b24a48d8cd302e1885819990ed1769656e704
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/customer-profile-dev@sha256:e6a3a64f3e66fabc485df35445292ff5ea8ea56c9384bbf3f8271e1dc5d371e3
         livenessProbe:
           httpGet:
             path: /livez
