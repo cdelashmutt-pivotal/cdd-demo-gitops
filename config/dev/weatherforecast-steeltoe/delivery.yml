@@ -31,8 +31,6 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;dev/carto.run/Workload/weatherforecast-steeltoe;carto.run/v1alpha1
-        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"weatherforecast-steeltoe","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1687794778738191955","kapp.k14s.io/association":"v1.836da03faf3f6c04838b4f93d8e32285","tanzu.app.live.view":"true","tanzu.app.live.view.application.flavours":"steeltoe","tanzu.app.live.view.application.name":"weatherforecast-steeltoe"},"name":"weatherforecast-steeltoe","namespace":"dev"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"Weather report management","location":{"path":"/swagger"},"owner":"weather-department","system":"weather","type":"openapi"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/cdelashmutt-pivotal/weatherforecast-steeltoe"}}}}'
-        kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
       labels:
         apis.apps.tanzu.vmware.com/register-api: "true"
         app.kubernetes.io/component: run
