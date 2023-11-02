@@ -38,7 +38,7 @@ spec:
             secretKeyRef:
               key: bar
               name: foo
-        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/dump-env-chris@sha256:cca7b05e4005864b4d9b933184e65af7e5883de7debecd7b6905cc2c2f4a3872
+        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/dump-env-chris@sha256:6c931e2cb25c4085bca9eeade375c6ba77e9bc47d6d4d5768dd32b10b80f1a34
         name: workload
         resources: {}
         securityContext:
