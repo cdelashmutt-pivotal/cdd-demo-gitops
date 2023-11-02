@@ -47,7 +47,12 @@ spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dfoo="bar" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+          value: -Dfoo="$DSC_VAL" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        - name: DSC_VAL
+          valueFrom:
+            secretKeyRef:
+              key: bar
+              name: foo
         image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/spring-sensors-chris@sha256:6699ab59234b6533f17e67d216d93a6fd007933212b834dec0de0e8c1afe95f5
         name: workload
         ports:
