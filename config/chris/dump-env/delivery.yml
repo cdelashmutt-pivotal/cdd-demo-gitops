@@ -32,7 +32,10 @@ spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dfoo="\\$DSC_VAL"
+          valueFrom:
+            secretKeyRef:
+              key: bar
+              name: foo
         - name: DSC_VAL
           valueFrom:
             secretKeyRef:
