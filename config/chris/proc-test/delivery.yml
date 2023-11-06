@@ -28,7 +28,7 @@ spec:
         carto.run/workload-name: proc-test
     spec:
       containers:
-      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/proc-test-chris@sha256:a5584ed9a5a8b7f197b326d61a59f3fc162059a5085c43316e16f0ac2491d591
+      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/proc-test-chris@sha256:cef1368c043aac59b90518452d2172771eb81d693bc3fa0bd0c208b49ea470b5
         name: workload
         resources: {}
         securityContext:
