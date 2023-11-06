@@ -20,7 +20,7 @@ spec:
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-proc-test@sha256:4d2c4accf57e84ae17533db1116fc7258f57e23d08ce2366ccbad506f1bc75e8
+        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-proc-test@sha256:07f1514896d10f4e1ba21de1da37423f6026adccd378b9cc3c57a21cc17bfc78
       labels:
         app.kubernetes.io/component: run
         apps.tanzu.vmware.com/has-tests: "true"
