@@ -20,7 +20,7 @@ spec:
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-proc-test@sha256:164eca7ed01747455e654c63cece71f1c63a830602adcf94af14dbc321e10b46
+        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-proc-test@sha256:927b164df8f577b96b84c2425cfb5a8392728863b9ee74e18336ffd3115d4acf
       labels:
         app.kubernetes.io/component: run
         apps.tanzu.vmware.com/has-tests: "true"
@@ -28,7 +28,7 @@ spec:
         carto.run/workload-name: proc-test
     spec:
       containers:
-      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/proc-test-chris@sha256:ea7bd482536b381d8bf1b6ac5bfc6ff4814df7a55cff0b4f482b786cdfe754d8
+      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/proc-test-chris@sha256:aa106489badf6e1429361f30d425e555854911d9a81afc876a231dfebd09c5e7
         name: workload
         resources: {}
         securityContext:
