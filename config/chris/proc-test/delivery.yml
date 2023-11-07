@@ -15,6 +15,7 @@ spec:
   template:
     metadata:
       annotations:
+        apps.tanzu.vmware.com/correlationid: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-proc-test?sub_path=/
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
           spring-boot-convention/auto-configure-actuators-check
