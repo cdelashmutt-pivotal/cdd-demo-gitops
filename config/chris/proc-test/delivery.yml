@@ -15,6 +15,7 @@ spec:
   template:
     metadata:
       annotations:
+        apps.tanzu.vmware.com/correlationid: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-proc-test?sub_path=/
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
           spring-boot-convention/auto-configure-actuators-check
@@ -28,7 +29,7 @@ spec:
         carto.run/workload-name: proc-test
     spec:
       containers:
-      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/proc-test-chris@sha256:2432d9a4b6193b714c9b5f7d285e8484bc65bf54e5e970d49ee3d0647cc8601a
+      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/proc-test-chris@sha256:4c08b0d2cf584aaeac14954e8f59d15f65f0ed7f60a07cbae96348eda13acf42
         name: workload
         resources: {}
         securityContext:
