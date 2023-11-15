@@ -1,0 +1,46 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: private-source-example
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    app.kubernetes.io/part-of: private-source-example
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    inner-loop: "true"
+    app.kubernetes.io/component: run
+    carto.run/workload-name: private-source-example
+spec:
+  template:
+    metadata:
+      annotations:
+        apps.tanzu.vmware.com/correlationid: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example?sub_path=/
+        apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/minScale: "1"
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          developer-conventions/add-source-image-label
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:f4eaa5555785dae0136851d636e84c6ea779e3e20ae91eda8f6048ff50f72ca8
+        developer.conventions/target-containers: workload
+        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:f4eaa5555785dae0136851d636e84c6ea779e3e20ae91eda8f6048ff50f72ca8
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: private-source-example
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: private-source-example
+        inner-loop: "true"
+    spec:
+      containers:
+      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/private-source-example-chris@sha256:e5c416366a7cff445ca6b97ef8bd31a5c7f756b2d7ccc1eda06bbc2827647abc
+        name: workload
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
