@@ -27,7 +27,7 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
         developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:f4eaa5555785dae0136851d636e84c6ea779e3e20ae91eda8f6048ff50f72ca8
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:f4eaa5555785dae0136851d636e84c6ea779e3e20ae91eda8f6048ff50f72ca8
+        local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:547791bfe47fb0310c0cbb1ef031adc562d6c5571a96b8e1508965feea15d40e
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: private-source-example
