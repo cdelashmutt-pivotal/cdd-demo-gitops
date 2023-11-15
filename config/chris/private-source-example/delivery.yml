@@ -19,28 +19,66 @@ spec:
       annotations:
         apps.tanzu.vmware.com/correlationid: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example?sub_path=/
         apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/maxScale: "1"
         autoscaling.knative.dev/minScale: "1"
+        boot.spring.io/version: 3.1.5
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
+          developer-conventions/live-update-convention
           developer-conventions/add-source-image-label
           spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-graceful-shutdown
+          spring-boot-convention/spring-boot-web
+          spring-boot-convention/spring-boot-actuator
+          spring-boot-convention/spring-boot-actuator-probes
           spring-boot-convention/app-live-view-appflavour-check
-        developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:f4eaa5555785dae0136851d636e84c6ea779e3e20ae91eda8f6048ff50f72ca8
+          spring-boot-convention/app-live-view-connector-boot
+          spring-boot-convention/app-live-view-appflavours-boot
+        developer.apps.tanzu.vmware.com/image-source-digest: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:547791bfe47fb0310c0cbb1ef031adc562d6c5571a96b8e1508965feea15d40e
         developer.conventions/target-containers: workload
         local-source-proxy.apps.tanzu.vmware.com: gcr.io/pa-cdelashmutt/cdd-demo-tap/source:chris-private-source-example@sha256:547791bfe47fb0310c0cbb1ef031adc562d6c5571a96b8e1508965feea15d40e
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: private-source-example
+        apps.tanzu.vmware.com/auto-configure-actuators: "false"
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: private-source-example
+        conventions.carto.run/framework: spring-boot
         inner-loop: "true"
+        tanzu.app.live.view: "true"
+        tanzu.app.live.view.application.actuator.path: actuator
+        tanzu.app.live.view.application.actuator.port: "8080"
+        tanzu.app.live.view.application.flavours: spring-boot
+        tanzu.app.live.view.application.name: private-source-example
     spec:
       containers:
-      - image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/private-source-example-chris@sha256:e5c416366a7cff445ca6b97ef8bd31a5c7f756b2d7ccc1eda06bbc2827647abc
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: gcr.io/pa-cdelashmutt/cdd-demo-tap/workloads/private-source-example-chris@sha256:61070ad490a09641062a9e2c06e06d9d569aa2d1cba6f92c6045abd163bec4d1
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 8080
+            scheme: HTTP
         name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
         resources: {}
         securityContext:
           runAsUser: 1000
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
       serviceAccountName: default
 
